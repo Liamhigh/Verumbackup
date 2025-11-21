@@ -1185,16 +1185,46 @@ The report MUST include the following sections in this exact order, with MAXIMUM
     - Estimated costs and resource requirements
     - Expected timeline to resolution
 
-**FORMATTING REQUIREMENTS:**
+**FORMATTING REQUIREMENTS FOR PROFESSIONAL REPORTS:**
 1. **NO WORD CONCATENATION:** Single space between all words
    - INCORRECT: \`CriminalLiability\`, \`ShareholderOppression&Breach\`
    - CORRECT: \`Criminal Liability\`, \`Shareholder Oppression & Breach\`
-2. **PROPER HEADINGS:** Use Markdown headings (## for main, ### for sub)
+2. **PROPER HEADINGS:** Use Markdown headings consistently
+   - Main sections: \`## 1. Executive Summary\`
+   - Subsections: \`### Criminal Strategy\`
+   - Sub-subsections: \`#### Specific Statutes\`
 3. **CLEAN LISTS:** Standard Markdown lists with proper indentation
+   - Use \`-\` for unordered lists
+   - Use \`1.\`, \`2.\`, etc. for ordered lists
+   - Indent sub-items with 2 spaces
 4. **PROFESSIONAL TONE:** Court-appropriate language throughout
+   - Formal, objective, and authoritative
+   - Avoid colloquialisms or informal language
+   - Use precise legal terminology
 5. **DETAILED ANALYSIS:** Every section must contain sufficient detail for legal decision-making
 6. **QUANTIFICATION:** Use percentages, amounts, ranges wherever possible
+   - Example: "Probability of success: 75-85%"
+   - Example: "Estimated damages: ZAR 500,000 - 750,000"
 7. **CITATIONS:** Reference specific statutes, articles, sections, case law
+   - Format: "Section 15 of the Constitution of South Africa, 1996"
+   - Format: "Article 34 of UAE Federal Law No. 3 of 1987"
+8. **VISUAL HIERARCHY:** Use clear visual structure
+   - Separate sections with blank lines
+   - Use horizontal rules (\`---\`) between major sections
+   - Use **bold** for emphasis on critical findings
+   - Use *italics* for case names and legal terms
+9. **TABLES AND MATRICES:** Where appropriate, use Markdown tables for:
+   - Contradiction matrices
+   - Evidence comparison tables
+   - Timeline summaries
+   - Financial analysis breakdowns
+10. **CONSISTENT SPACING:** 
+    - One blank line between paragraphs
+    - Two blank lines between major sections
+    - No trailing whitespace
+11. **NUMBERED SECTIONS:** All main sections must be numbered (1, 2, 3, etc.)
+12. **EXECUTIVE SUMMARY BOXES:** Use blockquotes for critical summaries
+    - Format: \`> **Critical Finding:** [summary text]\`
 
 **CRITICAL REQUIREMENTS FOR ACCURATE LEGAL DECISIONS:**
 1. **MAXIMUM DETAIL:** Your report must be EXTREMELY detailed. Short or superficial analysis is unacceptable. Each finding must be thoroughly documented with supporting evidence and legal reasoning.
@@ -1208,7 +1238,41 @@ The report MUST include the following sections in this exact order, with MAXIMUM
 9. **COMPLETE DOCUMENTATION:** Document your analysis process, verification steps, and reasoning for all conclusions.
 10. **LEGAL PRECISION:** Use exact legal terminology, statute references, and case law citations where applicable.
 
-Remember: This report will be used to make critical legal decisions. Insufficient detail or shallow analysis could result in incorrect legal strategy and case failure. Provide the MOST DETAILED, COMPREHENSIVE, and LEGALLY ACCURATE analysis possible.`;
+**PROFESSIONAL FORMATTING EXAMPLE:**
+\`\`\`markdown
+## 1. Executive Summary
+
+> **Critical Finding:** Evidence suggests potential fraud with HIGH confidence (85-90%).
+
+This report analyzes 5 evidence files totaling 2.3 MB spanning January 2024 - March 2024. Primary findings include:
+
+- **Contradiction Severity:** 3 CRITICAL contradictions detected
+- **Financial Exposure:** ZAR 750,000 - 1,200,000
+- **Criminal Liability:** Fraud (Section 86 of General Law Amendment Act) - potential 15 years imprisonment
+- **Recommended Action:** URGENT - File SAPS report within 48 hours
+
+---
+
+## 2. Timeline of Events
+
+| Date | Event | Source | Verification Status |
+|------|-------|--------|---------------------|
+| 2024-01-15 | Initial transaction | Bank Statement | ✓ VERIFIED |
+| 2024-02-03 | Contradictory statement | Email evidence | ✓ VERIFIED |
+
+---
+
+## 3. Key People/Entities Involved
+
+### Entity 1: John Doe (Respondent)
+
+- **Role:** Primary actor in transaction
+- **Credibility Assessment:** 45% (LOW) - Multiple contradictions detected
+- **Contradictions:** 3 CRITICAL, 2 HIGH, 1 MEDIUM
+
+\`\`\`
+
+Remember: This report will be used to make critical legal decisions. Insufficient detail or shallow analysis could result in incorrect legal strategy and case failure. Provide the MOST DETAILED, COMPREHENSIVE, PROFESSIONALLY FORMATTED, and LEGALLY ACCURATE analysis possible.`;
 
                 // Prepare evidence for OpenAI
                 const evidenceTexts = await Promise.all(files.map(async (file) => {
@@ -1314,15 +1378,31 @@ The report MUST include the following sections in this exact order:
     *   **Draft Communications:** Provide pre-drafted emails or letters for key stakeholders. For each communication, you must specify the intended recipient, the strategic purpose, and the key message to convey.
 9.  **Conclusion:** Your final, authoritative assessment of the situation.
 
-**CRITICAL FORMATTING DIRECTIVES - FAILURE TO COMPLY WILL INVALIDATE THE REPORT:**
+**CRITICAL FORMATTING DIRECTIVES FOR PROFESSIONAL REPORTS - FAILURE TO COMPLY WILL INVALIDATE THE REPORT:**
 1.  **NO WORD CONCATENATION:** You MUST ensure a single space separates every word. This is a critical, non-negotiable rule.
     *   **INCORRECT:** \`CriminalLiability\`, \`ShareholderOppression&Breach\`, \`SupplementalEvidencetoSAPS\`
     *   **CORRECT:** \`Criminal Liability\`, \`Shareholder Oppression & Breach\`, \`Supplemental Evidence to SAPS\`
     *   This rule applies to ALL text: headings, sub-headings, list items, and paragraphs. Double-check your entire output for this error before finalizing.
 2.  **PROPER HEADINGS:** All main section titles (e.g., "1. Executive Summary") MUST be Level 2 Headings (\`##\`). Sub-sections like 'Criminal Strategy' must be Level 3 (\`###\`). Do not use bolding as a substitute for a proper Markdown heading.
 3.  **CLEAN LISTS:** Use standard Markdown for lists (\`*\` or \`1.\`). For nested items or sub-topics within a list item, use proper indentation and standard list markers. Do not run text together.
+4.  **VISUAL HIERARCHY:** Create clear visual structure with:
+    *   Blank lines between paragraphs and sections
+    *   Horizontal rules (\`---\`) between major sections
+    *   **Bold** for critical findings
+    *   *Italics* for case names and legal terms
+5.  **PROFESSIONAL LAYOUT:**
+    *   Use blockquotes (\`>\`) for executive summaries of critical findings
+    *   Use Markdown tables for contradiction matrices and evidence comparisons
+    *   Maintain consistent spacing throughout
+    *   Number all main sections (1, 2, 3, etc.)
+6.  **LEGAL CITATIONS:** Format properly:
+    *   "Section 15 of the Constitution of South Africa, 1996"
+    *   "Article 34 of UAE Federal Law No. 3 of 1987"
+7.  **QUANTIFICATION:** Always include specific numbers, percentages, and ranges:
+    *   "Success probability: 75-85%"
+    *   "Estimated damages: ZAR 500,000 - 750,000"
 
-Analyze the provided evidence with extreme prejudice and generate the report according to these strict instructions.`;
+Analyze the provided evidence with extreme prejudice and generate a PROFESSIONALLY FORMATTED report according to these strict instructions.`;
             
             const userPrompt = "Analyze the provided evidence files and produce a forensic report based on your system instructions. Pay close attention to the V5 Brain rules.";
             
