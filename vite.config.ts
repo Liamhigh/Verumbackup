@@ -10,7 +10,9 @@ export default defineConfig(({ mode }) => {
   
   return {
     define: {
-      'import.meta.env.VITE_API_KEY': JSON.stringify(env.VITE_API_KEY)
+      'import.meta.env.VITE_API_KEY': JSON.stringify(env.VITE_API_KEY),
+      'import.meta.env.VITE_OPENAI_API_KEY': JSON.stringify(env.VITE_OPENAI_API_KEY),
+      'import.meta.env.VITE_PREFERRED_API': JSON.stringify(env.VITE_PREFERRED_API)
     },
     plugins: [
       react(),

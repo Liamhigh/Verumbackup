@@ -1653,9 +1653,20 @@ Analyze the provided evidence with extreme prejudice and generate the report acc
                             </div>
                         )}
                         
-                        <button onClick={handleSubmit} disabled={loading || isOffline} style={{...styles.button, minWidth: '200px', cursor: loading ? 'wait' : (isOffline ? 'not-allowed' : 'pointer')}}>
-                            {loading ? <span style={styles.spinner} role="status" aria-label="Analyzing..."></span> : (isOffline ? 'Offline Mode (Limited)' : 'Initiate V5 Analysis')}
+                        <button onClick={handleSubmit} disabled={loading} style={{...styles.button, minWidth: '200px', cursor: loading ? 'wait' : 'pointer', backgroundColor: isOffline ? '#6e7781' : undefined}}>
+                            {loading ? <span style={styles.spinner} role="status" aria-label="Analyzing..."></span> : (isOffline ? '📴 Offline Forensic Analysis' : '🔍 Initiate V5 Analysis')}
                         </button>
+                        
+                        {isOffline && (
+                            <div style={{...styles.offlineInfo, marginTop: '10px', padding: '12px', backgroundColor: '#21262d', border: '1px solid #30363d', borderRadius: '6px'}}>
+                                <p style={{margin: '0 0 8px 0', color: '#e6edf3', fontSize: '14px', fontWeight: '500'}}>
+                                    ⚡ Offline Mode Active
+                                </p>
+                                <p style={{margin: 0, color: '#8b949e', fontSize: '13px', lineHeight: '1.5'}}>
+                                    Rule-based forensic analysis available without internet. Provides: SHA-256 file integrity verification, metadata analysis, temporal pattern detection, and cryptographic sealing. For AI-powered analysis, connect to the internet.
+                                </p>
+                            </div>
+                        )}
                         
                         {/* Advanced Error Display */}
                         {errorInfo && (
