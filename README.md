@@ -6,6 +6,19 @@ Built as a Progressive Web App (PWA) and native Android application via Capacito
 
 **🏆 Gold Standard:** Evidence from this system has been accepted in court by law enforcement and law firms in South Africa and UAE.
 
+## 📱 Download Android APK
+
+**Get the latest version:** [Download APK from Releases](https://github.com/Liamhigh/Verumbackup/releases/latest)
+
+The Android APK is automatically built and published with every release. Simply download and install on your Android device.
+
+**Features:**
+- ✅ **100% Free** - No costs, no subscriptions
+- ✅ **Works Offline** - Full forensic analysis without internet
+- ✅ **Court-Admissible** - Cryptographically sealed reports
+- ✅ **Multi-Modal** - Analyzes images, audio, video, documents
+- ✅ **Global** - Works in every jurisdiction on earth
+
 ## Use Cases
 
 ### 🏦 Fraud Firewall for Banks & Institutions
@@ -171,7 +184,21 @@ For Firebase deployment, configure these secrets in your GitHub repository setti
 
 ## Mobile Development (Capacitor)
 
-To build and run the application as a native Android app:
+### Download Pre-built APK
+
+**📱 Download the latest Android APK:**
+
+1. Go to the [Releases page](https://github.com/Liamhigh/Verumbackup/releases)
+2. Download the latest `app-release-unsigned.apk`
+3. Install on your Android device
+
+**Note:** You may need to enable "Install from Unknown Sources" in your Android settings.
+
+The APK is automatically built and released on every push to the `main` branch via GitHub Actions.
+
+### Build from Source
+
+To build and run the application as a native Android app from source:
 
 1.  **Build the Web Assets:**
     Ensure you have a fresh production build.
@@ -179,19 +206,20 @@ To build and run the application as a native Android app:
     npm run build
     ```
 
-2.  **Initialize the Android Platform:**
-    This only needs to be done once to add the native Android project.
+2.  **Sync Web Assets with Android Project:**
+    This command copies your web build from `dist/` into the native Android project.
     ```bash
-    npx cap add android
+    npx cap sync android
     ```
 
-3.  **Sync Web Assets with Android Project:**
-    This command copies your web build from `dist/` into the native Android project. Run this command every time you update your web code.
+3.  **Build APK:**
     ```bash
-    npx cap sync
+    cd android
+    ./gradlew assembleRelease
     ```
+    The APK will be available at `android/app/build/outputs/apk/release/app-release-unsigned.apk`
 
-4.  **Open in Android Studio:**
+4.  **Open in Android Studio (for development):**
     ```bash
     npx cap open android
     ```
