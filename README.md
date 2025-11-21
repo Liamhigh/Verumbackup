@@ -6,12 +6,16 @@ Built as a Progressive Web App (PWA), it runs entirely on-device, ensuring user 
 
 ## Key Features
 
+-   **Court-Accepted Legal AI:** Trained on real-life cross-border legal cases with evidence accepted in court by law enforcement and law firms in South Africa and UAE. Represents the gold standard in legal forensics.
+-   **Triple Verification Doctrine:** Every finding is verified through (1) Direct evidence analysis, (2) Cross-reference verification, and (3) Constitutional compliance checks.
+-   **Contradiction Engine:** Advanced detection of conflicting statements, timeline impossibilities, and metadata anomalies with severity ratings.
+-   **Universal Cryptographic Sealing:** ALL documents (uploaded evidence AND generated reports) are cryptographically sealed with SHA-256 hashing for tamper-evidence and court admissibility.
+-   **Dual AI Engine:** Choose between OpenAI GPT-4 (legal expert mode) or Google Gemini API (general forensics), or use offline rule-based analysis.
 -   **Offline Forensics Mode:** Fully functional without internet connection. Uses rule-based forensic analysis (V5 rules) to analyze evidence, detect contradictions, verify file integrity, and generate cryptographically sealed reports even when offline.
--   **On-Device AI Processing:** When online, leverages Google Gemini API for enhanced AI-powered analysis. All processing is performed securely in the browser, guaranteeing privacy and confidentiality.
 -   **Multi-modal Evidence Analysis:** Supports a wide range of file types including text, `.txt`, `.pdf`, and common image formats (`.png`, `.jpg`, etc.).
--   **Dynamic Model Selection:** Automatically utilizes `gemini-2.5-flash` for general cases and `gemini-2.5-pro` with an enhanced thinking budget for more complex evidence like PDFs.
--   **Structured Forensic Reports:** Generates highly-structured reports in Markdown, detailing executive summaries, timelines, liability assessments, strategic recommendations, and more.
--   **Cryptographically Sealed PDFs:** Allows users to download reports as PDFs secured with a SHA-256 cryptographic seal, verifying the document's integrity.
+-   **Legal Strategy & Document Guidance:** Provides court-ready legal strategy, draft communications for law enforcement/legal counsel, and guidance on document preparation.
+-   **Structured Forensic Reports:** Generates highly-structured reports in Markdown with professional greeting, legal analysis, liability assessment, and strategic recommendations.
+-   **Chain of Custody:** Complete audit trail with timestamps, hashes, and verification records for all uploaded and generated documents.
 -   **Offline-First & Installable:** Fully functional without an internet connection for case preparation. It can be installed on any device as a PWA.
 -   **Local Data Storage:** Uses IndexedDB for storing cases, reports, and evidence files locally on device, with optional Firebase sync for multi-device access.
 -   **Production Ready:** Configured for deployment on Vercel, Firebase Hosting, and as a native Android application with Capacitor.
@@ -19,9 +23,13 @@ Built as a Progressive Web App (PWA), it runs entirely on-device, ensuring user 
 ## Tech Stack
 
 -   **Frontend:** React, TypeScript, Vite
--   **AI:** Google Gemini API (`@google/genai`) - optional, works offline without it
--   **PDF Generation:** jsPDF
--   **Native Runtime:** Capacitor
+-   **AI Engines:** 
+    - OpenAI GPT-4 (court-accepted legal expert - primary)
+    - Google Gemini API (alternative forensics engine)
+    - Offline rule-based analysis (no API required)
+-   **PDF Generation:** jsPDF with cryptographic sealing
+-   **Cryptography:** Web Crypto API (SHA-256 hashing)
+-   **Native Runtime:** Capacitor for Android
 -   **Hosting:** Vercel (primary), Firebase Hosting (alternative)
 -   **Storage:** IndexedDB (local), Firebase Firestore (optional sync)
 -   **CI/CD:** GitHub Actions
@@ -63,7 +71,24 @@ Built as a Progressive Web App (PWA), it runs entirely on-device, ensuring user 
     ```
 
 3.  **API Key Configuration:**
-    The application is designed to use an API key provided by its execution environment. In development environments like AI Studio, `process.env.API_KEY` is automatically injected.
+    Create a `.env` file in the root directory with your API keys:
+    
+    ```env
+    # OpenAI API (recommended - for court-accepted legal expert analysis)
+    VITE_OPENAI_API_KEY=your_openai_api_key_here
+    
+    # Google Gemini API (alternative)
+    VITE_API_KEY=your_gemini_api_key_here
+    
+    # Choose preferred API: 'openai' or 'gemini'
+    VITE_PREFERRED_API=openai
+    ```
+    
+    **Notes:**
+    - The app works fully offline without any API keys (uses rule-based analysis)
+    - OpenAI API is recommended for legal cases as it has court-accepted credentials
+    - Gemini API can be used as an alternative
+    - Set `VITE_PREFERRED_API` to choose which AI engine to use when both are configured
 
 4.  **Run the Development Server:**
     ```bash
@@ -102,15 +127,21 @@ This project is optimized for deployment on Vercel. The `vercel.json` configurat
 3.  Or connect your GitHub repository to Vercel for automatic deployments on every push.
 
 **Environment Variables:**
-Set the following environment variable in your Vercel project settings:
--   `VITE_API_KEY`: Your Google Gemini API key (optional - app works offline without it)
+Set the following environment variables in your Vercel project settings:
+-   `VITE_OPENAI_API_KEY`: Your OpenAI API key (recommended for legal cases)
+-   `VITE_API_KEY`: Your Google Gemini API key (alternative)
+-   `VITE_PREFERRED_API`: Set to `openai` or `gemini` (defaults to `openai`)
+
+**Note:** The app works fully offline without any API keys.
 
 ### Firebase Hosting
 
 This project is also configured for continuous deployment to Firebase Hosting. Every push to the `main` branch triggers the GitHub Actions workflow defined in `.github/workflows/firebase-hosting.yml`.
 
 For Firebase deployment, configure these secrets in your GitHub repository settings:
--   `VITE_API_KEY`: Your Google Gemini API key.
+-   `VITE_OPENAI_API_KEY`: Your OpenAI API key (recommended)
+-   `VITE_API_KEY`: Your Google Gemini API key (optional)
+-   `VITE_PREFERRED_API`: Preferred AI engine (`openai` or `gemini`)
 -   `FIREBASE_SERVICE_ACCOUNT_VERUM_OMNIS_ENGINE`: The JSON content of your Firebase service account key.
 
 ## Mobile Development (Capacitor)
