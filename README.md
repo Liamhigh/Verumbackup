@@ -1,8 +1,10 @@
 # Verum Omnis - Forensic Engine
 
-Verum Omnis is a powerful, stateless, and secure forensic analysis engine. It leverages the Google Gemini API to perform deep analysis on legal documents, images, and other evidence, producing comprehensive, court-ready forensic reports.
+Verum Omnis is a powerful, court-ready forensic analysis engine with AI capabilities trained on real-life legal cases. It performs deep analysis on legal documents, images, and other evidence, producing comprehensive, cryptographically-sealed forensic reports.
 
-Built as a Progressive Web App (PWA), it runs entirely on-device, ensuring user data is never uploaded or stored on external servers. It is designed for cross-platform use, functioning seamlessly in modern web browsers and as a native Android application via Capacitor.
+Built as a Progressive Web App (PWA) and native Android application via Capacitor, it runs entirely on-device, ensuring user data is never uploaded or stored on external servers. The app functions seamlessly in modern web browsers, on Vercel cloud hosting, and as a native Android application.
+
+**🏆 Gold Standard:** Evidence from this system has been accepted in court by law enforcement and law firms in South Africa and UAE.
 
 ## Key Features
 
