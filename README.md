@@ -6,21 +6,24 @@ Built as a Progressive Web App (PWA), it runs entirely on-device, ensuring user 
 
 ## Key Features
 
--   **On-Device AI Processing:** All analysis is performed securely in the browser, guaranteeing privacy and confidentiality.
+-   **Offline Forensics Mode:** Fully functional without internet connection. Uses rule-based forensic analysis (V5 rules) to analyze evidence, detect contradictions, verify file integrity, and generate cryptographically sealed reports even when offline.
+-   **On-Device AI Processing:** When online, leverages Google Gemini API for enhanced AI-powered analysis. All processing is performed securely in the browser, guaranteeing privacy and confidentiality.
 -   **Multi-modal Evidence Analysis:** Supports a wide range of file types including text, `.txt`, `.pdf`, and common image formats (`.png`, `.jpg`, etc.).
 -   **Dynamic Model Selection:** Automatically utilizes `gemini-2.5-flash` for general cases and `gemini-2.5-pro` with an enhanced thinking budget for more complex evidence like PDFs.
 -   **Structured Forensic Reports:** Generates highly-structured reports in Markdown, detailing executive summaries, timelines, liability assessments, strategic recommendations, and more.
 -   **Cryptographically Sealed PDFs:** Allows users to download reports as PDFs secured with a SHA-256 cryptographic seal, verifying the document's integrity.
 -   **Offline-First & Installable:** Fully functional without an internet connection for case preparation. It can be installed on any device as a PWA.
--   **Production Ready:** Configured for robust deployment on Firebase Hosting and for building into a native Android application with Capacitor.
+-   **Local Data Storage:** Uses IndexedDB for storing cases, reports, and evidence files locally on device, with optional Firebase sync for multi-device access.
+-   **Production Ready:** Configured for deployment on Vercel, Firebase Hosting, and as a native Android application with Capacitor.
 
 ## Tech Stack
 
 -   **Frontend:** React, TypeScript, Vite
--   **AI:** Google Gemini API (`@google/genai`)
+-   **AI:** Google Gemini API (`@google/genai`) - optional, works offline without it
 -   **PDF Generation:** jsPDF
 -   **Native Runtime:** Capacitor
--   **Hosting:** Firebase Hosting
+-   **Hosting:** Vercel (primary), Firebase Hosting (alternative)
+-   **Storage:** IndexedDB (local), Firebase Firestore (optional sync)
 -   **CI/CD:** GitHub Actions
 
 ## Project Structure
@@ -80,11 +83,33 @@ npm run build
 
 The output files will be generated in the `dist/` directory.
 
+### Vercel Deployment
+
+This project is optimized for deployment on Vercel. The `vercel.json` configuration file ensures proper routing for the SPA and security headers.
+
+**Deploy to Vercel:**
+
+1.  Install Vercel CLI (optional):
+    ```bash
+    npm i -g vercel
+    ```
+
+2.  Deploy from the command line:
+    ```bash
+    vercel
+    ```
+
+3.  Or connect your GitHub repository to Vercel for automatic deployments on every push.
+
+**Environment Variables:**
+Set the following environment variable in your Vercel project settings:
+-   `VITE_API_KEY`: Your Google Gemini API key (optional - app works offline without it)
+
 ### Firebase Hosting
 
-This project is configured for continuous deployment to Firebase Hosting. Every push to the `main` branch triggers the GitHub Actions workflow defined in `.github/workflows/firebase-hosting.yml`. This workflow automatically builds and deploys the application.
+This project is also configured for continuous deployment to Firebase Hosting. Every push to the `main` branch triggers the GitHub Actions workflow defined in `.github/workflows/firebase-hosting.yml`.
 
-For the workflow to succeed, you must configure the following secrets in your GitHub repository settings:
+For Firebase deployment, configure these secrets in your GitHub repository settings:
 -   `VITE_API_KEY`: Your Google Gemini API key.
 -   `FIREBASE_SERVICE_ACCOUNT_VERUM_OMNIS_ENGINE`: The JSON content of your Firebase service account key.
 
