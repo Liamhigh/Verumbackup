@@ -60,7 +60,11 @@ Built as a Progressive Web App (PWA), it runs entirely on-device, ensuring user 
     ```
 
 3.  **API Key Configuration:**
-    The application is designed to use an API key provided by its execution environment. In development environments like AI Studio, `process.env.API_KEY` is automatically injected.
+    Create a `.env` file in the root directory by copying the example:
+    ```bash
+    cp .env.example .env
+    ```
+    Then edit `.env` and replace `YOUR_GEMINI_API_KEY_HERE` with your actual Google Gemini API key.
 
 4.  **Run the Development Server:**
     ```bash
