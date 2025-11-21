@@ -719,7 +719,7 @@ const App = () => {
              setErrorInfo({
                  userMessage: "System Configuration Error",
                  // Ensure the error message clearly states process.env.API_KEY is missing
-                 technicalDetails: "VITE_API_KEY is not set for this build.",
+                 technicalDetails: "VITE_API_KEY environment variable is not configured. Set it in .env file or build environment.",
                  suggestedFix: "Set VITE_API_KEY in a .env file or CI secret before building the app (APK or web). This is used directly by the Vite build.",
                  code: "CONFIG_MISSING"
              });
