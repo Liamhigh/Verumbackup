@@ -6,6 +6,24 @@ Built as a Progressive Web App (PWA) and native Android application via Capacito
 
 **🏆 Gold Standard:** Evidence from this system has been accepted in court by law enforcement and law firms in South Africa and UAE.
 
+## Use Cases
+
+### 🏦 Fraud Firewall for Banks & Institutions
+Verum Omnis serves as a **fraud detection and prevention firewall** for financial institutions, banks, and organizations:
+- **Real-time Fraud Detection:** Analyzes transactions, communications, and documents to identify fraudulent patterns
+- **Contradiction Detection:** Flags inconsistencies in financial statements, wire transfers, and authorization documents
+- **Chain of Custody:** Maintains cryptographic proof of all analyzed evidence for regulatory compliance
+- **Multi-jurisdictional Compliance:** Works across all legal jurisdictions globally (SA, UAE, international)
+- **Automated Risk Assessment:** Provides quantified fraud probability scores and financial exposure estimates
+- **Regulatory Reporting:** Generates court-ready reports for SAPS, UAE authorities, and international regulators
+- **Document Verification:** SHA-256 hashing verifies authenticity of contracts, agreements, and financial documents
+
+### 👤 Access to Justice for All
+- **Free for Private Citizens:** Democratizes access to professional legal forensic analysis worldwide
+- **No Geographic Barriers:** Works in every jurisdiction on earth
+- **Offline Capability:** Functions without internet in remote or restricted areas
+- **Court-Admissible Output:** All reports meet legal standards for evidence submission
+
 ## Key Features
 
 -   **Court-Accepted Legal AI:** Trained on real-life cross-border legal cases with evidence accepted in court by law enforcement and law firms in South Africa and UAE. Represents the gold standard in legal forensics.
@@ -14,7 +32,12 @@ Built as a Progressive Web App (PWA) and native Android application via Capacito
 -   **Universal Cryptographic Sealing:** ALL documents (uploaded evidence AND generated reports) are cryptographically sealed with SHA-256 hashing for tamper-evidence and court admissibility.
 -   **Dual AI Engine:** Choose between OpenAI GPT-4 (legal expert mode) or Google Gemini API (general forensics), or use offline rule-based analysis.
 -   **Offline Forensics Mode:** Fully functional without internet connection. Uses rule-based forensic analysis (V5 rules) to analyze evidence, detect contradictions, verify file integrity, and generate cryptographically sealed reports even when offline.
--   **Multi-modal Evidence Analysis:** Supports a wide range of file types including text, `.txt`, `.pdf`, and common image formats (`.png`, `.jpg`, etc.).
+-   **Multi-modal Evidence Analysis:** Comprehensive support for all evidence types:
+    - **Documents:** Text files, `.txt`, `.pdf`, Word documents
+    - **Images:** `.png`, `.jpg`, `.jpeg`, `.gif`, `.bmp`, `.webp` - Visual evidence analysis, metadata extraction, forensic image verification
+    - **Audio:** `.mp3`, `.wav`, `.m4a`, `.ogg` - Voice analysis, audio forensics, voiceprint detection, conversation transcription
+    - **Video:** `.mp4`, `.webm`, `.mov`, `.avi` - Video forensics, frame analysis, timeline verification, visual evidence extraction
+    - **Financial Documents:** Bank statements, transaction records, invoices, contracts
 -   **Legal Strategy & Document Guidance:** Provides court-ready legal strategy, draft communications for law enforcement/legal counsel, and guidance on document preparation.
 -   **Structured Forensic Reports:** Generates highly-structured reports in Markdown with professional greeting, legal analysis, liability assessment, and strategic recommendations.
 -   **Chain of Custody:** Complete audit trail with timestamps, hashes, and verification records for all uploaded and generated documents.

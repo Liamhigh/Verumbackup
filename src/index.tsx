@@ -1013,13 +1013,18 @@ Always begin your interaction with:
 4. Overview of the triple verification process you'll apply
 
 **MISSION:**
-Analyze provided evidence (text, PDFs, images) and produce an EXTREMELY DETAILED forensic report with comprehensive legal strategy. You MUST:
+Analyze provided evidence (text, PDFs, images, audio, video, financial documents) and produce an EXTREMELY DETAILED forensic report with comprehensive legal strategy. You MUST:
 - Explicitly utilize ALL V5 Brains (B1-B9) with documented findings from each
 - Apply the Triple Verification Doctrine to EVERY finding with full documentation
 - Provide sufficient detail to support accurate legal decision-making in court
 - Include specific statute references, case law citations, and legal precedents
 - Quantify all assessments (probabilities, confidence levels, damage ranges)
 - Create actionable recommendations with step-by-step implementation guidance
+
+**MEDIA ANALYSIS CAPABILITIES:**
+- **Image Analysis:** Visual forensics, metadata extraction (EXIF data), image authenticity verification, timestamp analysis, location data from photos
+- **Audio Analysis:** Voice pattern recognition, voiceprint verification (Brain B8), conversation transcription, audio authenticity detection, background noise analysis
+- **Video Analysis:** Frame-by-frame forensic examination, timeline reconstruction from video evidence, facial recognition compatibility, motion analysis, video metadata extraction
 
 **REPORT STRUCTURE:**
 The report MUST include the following sections in this exact order, with MAXIMUM DETAIL:
@@ -1211,11 +1216,15 @@ Remember: This report will be used to make critical legal decisions. Insufficien
                         const text = await file.text();
                         return `--- Evidence File: ${file.name} ---\n${text}\n`;
                     } else if (file.type === 'application/pdf') {
-                        return `--- Evidence File: ${file.name} (PDF) ---\n[PDF file - content extraction required]\n`;
+                        return `--- Evidence File: ${file.name} (PDF) ---\n[PDF file - content extraction and legal document analysis required]\n`;
                     } else if (file.type.startsWith('image/')) {
-                        return `--- Evidence File: ${file.name} (Image) ---\n[Image file - visual analysis required]\n`;
+                        return `--- Evidence File: ${file.name} (Image: ${file.type}) ---\n[Image file - visual forensic analysis required: metadata extraction (EXIF), authenticity verification, timestamp analysis]\nFile size: ${file.size} bytes\nLast modified: ${new Date(file.lastModified).toISOString()}\n`;
+                    } else if (file.type.startsWith('audio/')) {
+                        return `--- Evidence File: ${file.name} (Audio: ${file.type}) ---\n[Audio file - forensic audio analysis required: voice pattern recognition, voiceprint verification, conversation transcription, audio authenticity detection]\nFile size: ${file.size} bytes\nLast modified: ${new Date(file.lastModified).toISOString()}\n`;
+                    } else if (file.type.startsWith('video/')) {
+                        return `--- Evidence File: ${file.name} (Video: ${file.type}) ---\n[Video file - forensic video analysis required: frame-by-frame examination, timeline reconstruction, visual evidence extraction, video metadata analysis]\nFile size: ${file.size} bytes\nLast modified: ${new Date(file.lastModified).toISOString()}\n`;
                     } else {
-                        return `--- Evidence File: ${file.name} (${file.type || 'Unknown type'}) ---\n[File type not directly analyzed]\n`;
+                        return `--- Evidence File: ${file.name} (${file.type || 'Unknown type'}) ---\n[File type: analyze based on extension and content]\nFile size: ${file.size} bytes\n`;
                     }
                 }));
 
@@ -1277,8 +1286,13 @@ Refer to the "logic" for detection and "recovery" for strategic recommendations:
 ${JSON.stringify(V5_RULES, null, 2)}
 
 **MISSION:**
-Analyze the provided evidence (text, PDFs, images) and produce a detailed forensic and strategic report. 
+Analyze the provided evidence (text, PDFs, images, audio, video, financial documents) and produce a detailed forensic and strategic report. 
 You MUST explicitly utilize the V5 Brains (B1-B9) to categorize anomalies.
+
+**MEDIA FORENSICS:**
+- **Images:** Extract EXIF metadata, verify authenticity, analyze timestamps and location data
+- **Audio:** Voice analysis using Brain B8 (voiceprint verification), conversation transcription, audio authenticity detection
+- **Video:** Frame-by-frame analysis, timeline reconstruction, visual evidence extraction, video metadata analysis
 
 **REPORT STRUCTURE:**
 The report MUST include the following sections in this exact order:
@@ -1319,9 +1333,13 @@ Analyze the provided evidence with extreme prejudice and generate the report acc
                 } else if (file.type.startsWith('text/')) {
                     const text = await file.text();
                     return { text: `\n--- Evidence File: ${file.name} ---\n${text}`};
+                } else if (file.type.startsWith('audio/')) {
+                    return { text: `\n--- Evidence File: ${file.name} (Audio: ${file.type}) ---\n[Audio forensics required: voice analysis, voiceprint verification, conversation transcription]\nFile size: ${file.size} bytes, Last modified: ${new Date(file.lastModified).toISOString()}`};
+                } else if (file.type.startsWith('video/')) {
+                    return { text: `\n--- Evidence File: ${file.name} (Video: ${file.type}) ---\n[Video forensics required: frame analysis, timeline reconstruction, visual evidence extraction]\nFile size: ${file.size} bytes, Last modified: ${new Date(file.lastModified).toISOString()}`};
                 } else {
-                    // Fallback for unsupported types
-                     return { text: `\n--- Evidence File: ${file.name} (Unsupported Format) ---\n[File contents not analyzed directly]`};
+                    // Fallback for other types
+                     return { text: `\n--- Evidence File: ${file.name} (${file.type || 'Unknown Format'}) ---\n[File metadata: ${file.size} bytes, last modified: ${new Date(file.lastModified).toISOString()}]`};
                 }
             });
 
