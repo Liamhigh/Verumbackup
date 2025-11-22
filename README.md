@@ -3,9 +3,25 @@
 Verum Omnis is a sophisticated forensic analysis engine featuring the **9 Brain Architecture**, **Triple Verification Doctrine**, and **Verum Constitutional Framework**. It performs comprehensive offline evidence analysis and integrates with OpenAI for advanced legal strategy recommendations.
 
 > **📘 Constitutional Documents:**  
-> - [Nine-Brain Doctrine](NINE_BRAIN_DOCTRINE.md) - Constitutional wording and principles  
+> - [Nine-Brain Doctrine](NINE_BRAIN_DOCTRINE.md) - Constitutional wording and principles (Articles I-X)
+> - [Cryptographic Seal Enforcement](CRYPTOGRAPHIC_SEAL_ENFORCEMENT.md) - **Supreme rule governing all data flow**
 > - [Nine-Brain System Logic](NINE_BRAIN_SYSTEM.md) - Detailed implementation blueprint  
 > - [System Architecture](ARCHITECTURE_DIAGRAM.md) - Data flow and interaction diagrams
+
+## ⚡ VERUM SEAL RULE (Constitutional Article X)
+
+**"If it isn't sealed, it doesn't exist."**
+
+**NOTHING enters the system AND nothing leaves the system unless it is processed and sealed by the Offline Forensic Engine.**
+
+This absolute rule enforces:
+- 🧱 **Input Gate**: All uploads cryptographically sealed before use
+- 🔒 **Internal Process Gate**: All inter-module data must be sealed
+- ☁️ **Output Gate**: All external transmissions sealed (including AI prompts)
+
+See [CRYPTOGRAPHIC_SEAL_ENFORCEMENT.md](CRYPTOGRAPHIC_SEAL_ENFORCEMENT.md) for complete specification.
+
+---
 
 ## Constitutional Framework
 

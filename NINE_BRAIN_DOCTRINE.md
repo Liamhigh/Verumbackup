@@ -122,13 +122,31 @@ This doctrine establishes the duties, constraints, and operational logic of all 
 
 ---
 
+## ARTICLE X — The Verum Seal Rule
+
+**"If it isn't sealed, it doesn't exist."**
+
+- No data may enter, move through, or exit the Verum Omnis system unless it has been cryptographically sealed by the Offline Forensic Engine.
+- All evidence must pass through three enforcement gates:
+  1. **Input Gate**: All uploads sealed before use
+  2. **Internal Process Gate**: All inter-module data sealed
+  3. **Output Gate**: All external transmissions sealed
+- No API request may occur without a sealed input brief.
+- No PDF or report may be generated without a sealed output signature.
+- No brain may process unsealed data.
+- **This rule is absolute and may not be overridden.**
+
+**See**: [Cryptographic Seal Enforcement Doctrine](CRYPTOGRAPHIC_SEAL_ENFORCEMENT.md) for complete specification.
+
+---
+
 ## Constitutional Enforcement
 
 This doctrine is binding on all implementations of Verum Omnis.
 
 Any system claiming to operate under the Verum Omnis name **must**:
 
-1. Implement all nine brains without exception
+1. Implement all ten articles without exception (Nine Brains + Seal Rule)
 2. Maintain independent operation of each brain
 3. Feed all outputs to the Synthesis & Verdict Brain
 4. Never overwrite or delete source evidence
@@ -136,6 +154,8 @@ Any system claiming to operate under the Verum Omnis name **must**:
 6. Generate cryptographically sealed reports
 7. Preserve complete chain of custody
 8. Operate under the Zero-Loss Evidence Doctrine
+9. **Enforce cryptographic sealing at all three gates (Article X)**
+10. **Reject all unsealed data automatically**
 
 **Violations of this doctrine invalidate the Verum Omnis certification.**
 
