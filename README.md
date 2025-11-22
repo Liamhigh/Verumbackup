@@ -88,6 +88,12 @@ For the workflow to succeed, you must configure the following secrets in your Gi
 -   `VITE_API_KEY`: Your Google Gemini API key.
 -   `FIREBASE_SERVICE_ACCOUNT_VERUM_OMNIS_ENGINE`: The JSON content of your Firebase service account key.
 
+## Download Pre-built Android APK
+
+**Don't want to build from source?** Download the ready-to-install Android APK files from the [Releases page](https://github.com/Liamhigh/Verumbackup/releases).
+
+See [DOWNLOADS.md](DOWNLOADS.md) for detailed download and installation instructions.
+
 ## Mobile Development (Capacitor)
 
 To build and run the application as a native Android app:
