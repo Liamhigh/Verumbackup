@@ -1,48 +1,59 @@
-# Verum Omnis - Forensic Engine
+# Verum Omnis V5 - Forensic Analysis Engine
 
-Verum Omnis is a powerful, fully offline forensic analysis engine designed for processing legal documents, images, and other evidence. It generates comprehensive forensic reports entirely on-device, ensuring complete privacy and data security.
+Verum Omnis is a sophisticated forensic analysis engine featuring the **9 Brain Architecture**, **Triple Verification Doctrine**, and **Verum Constitutional Framework**. It performs comprehensive offline evidence analysis and integrates with OpenAI for advanced legal strategy recommendations.
 
-Built as a Progressive Web App (PWA) and native Android application via Capacitor, it operates 100% offline with no cloud dependencies, API keys, or external services required.
+## Constitutional Framework
+
+Verum Omnis operates under a strict constitutional framework that ensures:
+- **Truth Above All**: Objective truth without bias
+- **Evidence Sovereignty**: Facts-first interpretation
+- **Chain of Custody**: Verifiable integrity
+- **Triple Verification**: Technical, Logical, and Contextual verification for every finding
+
+## The 9 Brain Architecture
+
+All evidence is processed through nine specialized analytical engines:
+
+1. **B1: Contradiction Engine** - Detects logical inconsistencies and temporal impossibilities
+2. **B2: Document & Image Forensics** - Validates file integrity via cryptographic hashing
+3. **B3: Communications Integrity** - Verifies message authenticity and chain of correspondence
+4. **B4: Linguistics & Behavioral** - Analyzes language patterns and deception indicators
+5. **B5: Timeline Reconstruction** - Builds chronological sequences and detects anomalies
+6. **B6: Financial Patterns** - Identifies irregular transactions and money laundering
+7. **B7: Legal Framework** - Assesses liability and evaluates precedent alignment
+8. **B8: Voice & Audio Forensics** - Validates audio authenticity
+9. **B9: R&D Advisory** - Flags unprecedented patterns and novel anomalies
 
 ## Key Features
 
--   **100% Offline Operation:** All analysis is performed locally on your device with no internet required
--   **No API Keys Needed:** Works out-of-the-box without any configuration or setup
--   **Multi-format Evidence Support:** Analyzes text files, PDFs, images, and more
--   **Automated Forensic Checks:** Detects suspicious patterns, validates integrity, and flags potential issues
--   **Professional Reports:** Generates court-ready forensic reports in Markdown and PDF formats
--   **Local Data Storage:** All evidence and reports are stored in IndexedDB on your device
--   **Privacy First:** No data ever leaves your device - complete confidentiality guaranteed
--   **Cross-Platform:** Works in any modern web browser and as a native Android app
+-   **100% Offline Forensic Analysis:** Initial analysis with 9 Brain Architecture requires no internet
+-   **Triple Verification Doctrine:** Every finding verified through technical, logical, and contextual layers
+-   **Cryptographic Evidence Sealing:** SHA-256 hashing for tamper-proof chain of custody
+-   **Comprehensive Reports:** Court-ready forensic reports with detailed narratives
+-   **OpenAI Legal Integration:** Optional advanced legal analysis and strategy (requires API key)
+-   **Professional PDF Generation:** Download sealed reports for legal proceedings
+-   **Local Data Storage:** All evidence stored in IndexedDB - complete privacy
+-   **Cross-Platform:** Works in browsers and as native Android app
 
 ## Download Android APK
 
-Get the Verum Omnis Android app for your device:
-
 ### Option 1: Download Pre-built APK (Recommended)
-Download the latest pre-built APK directly from this repository:
 -   **[Download verum-omnis-engine.apk](verum-omnis-engine.apk)** (Click "Download" or "View raw")
 
 ### Option 2: GitHub Releases
-Download the latest release APK with version information:
 -   Go to [Releases](../../releases) and download the APK from the latest release
 
 ### Option 3: Build Artifacts
-Download APKs from recent builds:
 1. Go to [Actions](../../actions/workflows/production.yml)
 2. Click on the most recent successful workflow run
-3. Scroll down to "Artifacts" section
-4. Download the `verum-omnis-release` artifact
+3. Download the `verum-omnis-release` artifact
 
-### Installation Instructions
-1. Download the APK file using one of the methods above
-2. On your Android device, go to **Settings** > **Security** and enable **"Install from Unknown Sources"** or **"Install Unknown Apps"** for your browser/file manager
-3. Open the downloaded APK file
-4. Tap **Install** and follow the prompts
-5. Once installed, you can find "Verum Omnis" in your app drawer
-6. **No API key or configuration needed** - just install and use!
-
-**Note:** The APK is unsigned for development purposes. Your device may show a security warning - this is normal for apps not distributed through the Play Store.
+### Installation
+1. Download the APK
+2. Enable "Install from Unknown Sources" on your Android device
+3. Install the APK
+4. **No setup required** - forensic analysis works immediately offline
+5. **Optional**: Add OpenAI API key for legal advice features
 
 ## Tech Stack
 
@@ -50,31 +61,46 @@ Download APKs from recent builds:
 -   **PDF Generation:** jsPDF
 -   **Markdown Processing:** marked
 -   **Storage:** IndexedDB (fully offline)
+-   **AI Integration:** OpenAI API (optional, user-provided key)
 -   **Native Runtime:** Capacitor
 -   **Web Hosting:** Vercel
 -   **CI/CD:** GitHub Actions
 
-## Project Structure
+## Usage Workflow
 
-```
-/
-├── .github/workflows/         # GitHub Actions for CI/CD
-├── dist/                      # Production build output (generated)
-├── src/
-│   ├── index.tsx              # Main React application
-│   └── storage.ts             # IndexedDB storage layer
-├── android/                   # Native Android project (Capacitor)
-├── capacitor.config.json      # Capacitor configuration
-├── vercel.json                # Vercel hosting configuration
-├── index.html                 # Main HTML entry point
-├── package.json
-└── README.md                  # This file
-```
+### 1. Evidence Upload & Forensic Analysis (Offline)
+1. Enter a Case ID
+2. Upload evidence files (documents, images, PDFs, audio, etc.)
+3. Click "Run Forensic Analysis (9 Brains)"
+4. System processes evidence through all 9 analytical engines
+5. Generates comprehensive sealed forensic report with:
+   - Executive Summary
+   - Timeline of Events
+   - 9 Brain Analysis Results
+   - Evidence Breakdown
+   - Preliminary Liability Assessment
+   - Strategic Recommendations
+
+### 2. Legal Analysis & Strategy (OpenAI Integration)
+1. Review sealed forensic report
+2. Optionally provide OpenAI API key
+3. Ask specific legal questions or request full analysis
+4. Receive:
+   - Detailed content interpretation
+   - Applicable statute identification
+   - Criminal and civil liability assessment
+   - Litigation strategy recommendations
+   - Draft legal communications
+
+### 3. Report Management
+- Download forensic report as sealed PDF
+- Download legal analysis as PDF
+- Access previous cases from local storage
+- Maintain complete chain of custody
 
 ## Getting Started
 
 ### Prerequisites
-
 -   Node.js (v18 or later)
 -   npm (v8 or later)
 
@@ -91,77 +117,70 @@ Download APKs from recent builds:
     npm install
     ```
 
-3.  **Run the Development Server:**
+3.  **Run Development Server:**
     ```bash
     npm run dev
     ```
-    The application will be available at `http://localhost:5173`.
+    Application available at `http://localhost:5173`
+
+4.  **Optional - OpenAI Integration:**
+    - Obtain API key from [OpenAI Platform](https://platform.openai.com/)
+    - Enter key in the application when requesting legal analysis
+    - Or set `VITE_OPENAI_API_KEY` environment variable
 
 ## Build and Deployment
 
 ### Production Web Build
-
-To create an optimized production build of the web app:
-
 ```bash
 npm run build
 ```
-
-The output files will be generated in the `dist/` directory.
+Output in `dist/` directory.
 
 ### Vercel Deployment
+1. Connect GitHub repository to Vercel
+2. Automatic deployment on push to main
+3. Zero configuration required (`vercel.json` included)
 
-This project is configured for deployment on Vercel:
-
-1. Connect your GitHub repository to Vercel
-2. Vercel will automatically detect the Vite configuration
-3. Deploy with zero configuration required
-
-The `vercel.json` file contains all necessary settings for proper routing and headers.
-
-## Mobile Development (Capacitor)
-
-To build and run the application as a native Android app:
-
-1.  **Build the Web Assets:**
+### Android APK Build
+1.  **Build Web Assets:**
     ```bash
     npm run build
     ```
 
-2.  **Initialize the Android Platform** (if not already done):
-    ```bash
-    npx cap add android
-    ```
-
-3.  **Sync Web Assets with Android Project:**
+2.  **Sync with Capacitor:**
     ```bash
     npx cap sync
     ```
 
-4.  **Open in Android Studio:**
+3.  **Open in Android Studio:**
     ```bash
     npx cap open android
     ```
-    From Android Studio, you can run the app on an emulator or a connected physical device.
 
-## Usage
+## Security & Privacy
 
-1. **Enter a Case ID** to identify your forensic analysis
-2. **Upload Evidence Files** (documents, images, PDFs, etc.)
-3. **Click "Analyze Evidence"** to perform offline forensic analysis
-4. **Review the Report** generated with detailed findings
-5. **Download as PDF** for court submission or archival
-6. **Access Previous Cases** from local storage at any time
+- ✅ All forensic analysis performed offline
+- ✅ Evidence never uploaded unless you choose OpenAI integration
+- ✅ Cryptographic sealing with SHA-256
+- ✅ Complete chain of custody documentation
+- ✅ Local-only storage (IndexedDB)
+- ✅ User-controlled API keys (never stored in code)
 
-All data is stored locally on your device and never uploaded to any server.
+## V5 Rules Engine
+
+The system implements sophisticated detection rules across all 9 brains:
+- Contradiction detection with severity levels (CRITICAL, HIGH, MEDIUM)
+- Automated recovery procedures
+- Escalation protocols
+- Cross-brain verification
 
 ## Contributing
 
-Contributions are welcome. Please open an issue to discuss any changes or submit a pull request with a clear description of your improvements.
+Contributions welcome. Open an issue to discuss changes or submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License.
+MIT License
 
     ```
     The application will be available at `http://localhost:5173`.
