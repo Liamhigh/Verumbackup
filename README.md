@@ -2,6 +2,11 @@
 
 Verum Omnis is a sophisticated forensic analysis engine featuring the **9 Brain Architecture**, **Triple Verification Doctrine**, and **Verum Constitutional Framework**. It performs comprehensive offline evidence analysis and integrates with OpenAI for advanced legal strategy recommendations.
 
+> **📘 Constitutional Documents:**  
+> - [Nine-Brain Doctrine](NINE_BRAIN_DOCTRINE.md) - Constitutional wording and principles  
+> - [Nine-Brain System Logic](NINE_BRAIN_SYSTEM.md) - Detailed implementation blueprint  
+> - [System Architecture](ARCHITECTURE_DIAGRAM.md) - Data flow and interaction diagrams
+
 ## Constitutional Framework
 
 Verum Omnis operates under a strict constitutional framework that ensures:
