@@ -1,33 +1,5 @@
-// Storage Layer - Works on all devices (Web, Android, iOS)
-// Priority: IndexedDB (primary) -> LocalStorage (fallback) -> Firebase (optional sync)
-
-import { initializeApp, FirebaseApp } from 'firebase/app';
-import { getFirestore, Firestore, doc, setDoc, Timestamp } from 'firebase/firestore';
-
-// Firebase configuration (optional - for desktop/web sync)
-const firebaseConfig = {
-    // Users can configure this if they want cloud sync
-    // If not configured, app works 100% offline
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || '',
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || '',
-    appId: import.meta.env.VITE_FIREBASE_APP_ID || ''
-};
-
-let firebaseApp: FirebaseApp | null = null;
-let firestore: Firestore | null = null;
-
-// Initialize Firebase only if configured
-const initFirebase = () => {
-    if (firebaseConfig.apiKey && firebaseConfig.projectId && !firebaseApp) {
-        try {
-            firebaseApp = initializeApp(firebaseConfig);
-            firestore = getFirestore(firebaseApp);
-            console.log('Firebase initialized for optional sync');
-        } catch (e) {
-            console.warn('Firebase init failed, continuing with local-only storage', e);
-        }
-    }
-};
+// Storage Layer - Local-only storage using IndexedDB
+// Works on all devices (Web, Android, iOS)
 
 // Storage interface
 export interface StorageAdapter {
@@ -40,7 +12,7 @@ export interface StorageAdapter {
     getAllCases(): Promise<string[]>;
 }
 
-// IndexedDB Implementation (Primary - works on all devices)
+// IndexedDB Implementation
 class IndexedDBStorage implements StorageAdapter {
     private dbName = 'VerumOmnisDB';
     private version = 3;
@@ -162,70 +134,12 @@ class IndexedDBStorage implements StorageAdapter {
     }
 }
 
-// Firebase Sync Layer (Optional - for desktop/multi-device sync)
-class FirebaseSync {
-    private db: Firestore | null = null;
-    
-    constructor() {
-        initFirebase();
-        this.db = firestore;
-    }
-    
-    isAvailable(): boolean {
-        return this.db !== null;
-    }
-    
-    async syncReport(caseId: string, data: any): Promise<void> {
-        if (!this.db) return;
-        try {
-            const reportRef = doc(this.db, 'cases', caseId, 'reports', data.id || Date.now().toString());
-            await setDoc(reportRef, {
-                ...data,
-                syncedAt: Timestamp.now()
-            });
-        } catch (e) {
-            console.warn('Firebase sync failed (continuing with local storage)', e);
-        }
-    }
-    
-    async syncEvidence(caseId: string, data: any): Promise<void> {
-        if (!this.db) return;
-        try {
-            const evidenceRef = doc(this.db, 'cases', caseId, 'evidence', data.id || Date.now().toString());
-            // Don't sync large binary data to Firebase - only metadata
-            const { binaryData, ...metadata } = data;
-            await setDoc(evidenceRef, {
-                ...metadata,
-                syncedAt: Timestamp.now(),
-                note: 'Binary data stored locally only'
-            });
-        } catch (e) {
-            console.warn('Firebase evidence sync failed', e);
-        }
-    }
-    
-    async syncMetadata(caseId: string, data: any): Promise<void> {
-        if (!this.db) return;
-        try {
-            const metaRef = doc(this.db, 'cases', caseId);
-            await setDoc(metaRef, {
-                ...data,
-                syncedAt: Timestamp.now()
-            }, { merge: true });
-        } catch (e) {
-            console.warn('Firebase metadata sync failed', e);
-        }
-    }
-}
-
-// Unified Storage Manager
+// Storage Manager
 export class StorageManager {
     private primary: StorageAdapter;
-    private sync: FirebaseSync;
     
     constructor() {
         this.primary = new IndexedDBStorage();
-        this.sync = new FirebaseSync();
     }
     
     async saveReport(caseId: string, content: string, evidence: string[], metadata?: any): Promise<void> {
@@ -235,13 +149,7 @@ export class StorageManager {
             ...metadata
         };
         
-        // Save locally first (always works)
         await this.primary.saveReport(caseId, data);
-        
-        // Optionally sync to Firebase if available
-        if (this.sync.isAvailable()) {
-            await this.sync.syncReport(caseId, data);
-        }
     }
     
     async getReports(caseId: string): Promise<any[]> {
@@ -259,13 +167,7 @@ export class StorageManager {
             metadata
         };
         
-        // Save locally with binary data
         await this.primary.saveEvidence(caseId, data);
-        
-        // Sync metadata only to Firebase (not binary data)
-        if (this.sync.isAvailable()) {
-            await this.sync.syncEvidence(caseId, data);
-        }
     }
     
     async getEvidence(caseId: string): Promise<any[]> {
@@ -274,10 +176,6 @@ export class StorageManager {
     
     async saveCaseMetadata(caseId: string, metadata: any): Promise<void> {
         await this.primary.saveCaseMetadata(caseId, metadata);
-        
-        if (this.sync.isAvailable()) {
-            await this.sync.syncMetadata(caseId, metadata);
-        }
     }
     
     async getCaseMetadata(caseId: string): Promise<any> {
@@ -288,7 +186,6 @@ export class StorageManager {
         return this.primary.getAllCases();
     }
     
-    // Export all data for desktop backup
     async exportAllData(): Promise<any> {
         const cases = await this.getAllCases();
         const exportData: any = { cases: {}, exportedAt: new Date().toISOString() };
@@ -302,7 +199,7 @@ export class StorageManager {
                 reports,
                 evidence: evidence.map(e => ({
                     ...e,
-                    binaryData: `<BINARY ${e.fileSize} bytes>` // Don't include in export
+                    binaryData: `<BINARY ${e.fileSize} bytes>`
                 })),
                 metadata
             };
@@ -312,5 +209,4 @@ export class StorageManager {
     }
 }
 
-// Global storage instance
 export const storage = new StorageManager();

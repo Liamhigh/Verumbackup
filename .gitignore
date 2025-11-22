@@ -14,7 +14,8 @@ dist-ssr
 
 # Environment variables
 .env
-.env.production
+.env.*
+!.env.example
 
 # APK files (except release artifacts)
 *.apk
