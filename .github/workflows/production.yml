@@ -75,8 +75,46 @@ jobs:
       - name: Build Android APK (Release)
         run: cd android && ./gradlew assembleRelease
 
+      - name: Rename APK
+        run: |
+          cp android/app/build/outputs/apk/release/app-release-unsigned.apk verum-omnis-engine.apk
+
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: verum-omnis-release
-          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+          path: verum-omnis-engine.apk
+
+      - name: Generate version tag
+        id: version
+        run: |
+          VERSION="v$(date +'%Y%m%d')-build-${{ github.run_number }}"
+          echo "tag=$VERSION" >> $GITHUB_OUTPUT
+          echo "Generated version: $VERSION"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Verum Omnis ${{ steps.version.outputs.tag }}
+          body: |
+            ## Verum Omnis - Android APK Release
+            
+            **Build Date:** $(date +'%Y-%m-%d %H:%M:%S UTC')
+            **Commit:** ${{ github.sha }}
+            
+            ### Download Instructions
+            1. Download the `verum-omnis-engine.apk` file below
+            2. Enable "Install from Unknown Sources" on your Android device
+            3. Install the APK
+            
+            ### What's New
+            Automated build from commit: ${{ github.event.head_commit.message }}
+            
+            For more information, visit the [repository](https://github.com/${{ github.repository }})
+          files: |
+            verum-omnis-engine.apk
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

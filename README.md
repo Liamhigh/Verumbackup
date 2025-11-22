@@ -14,6 +14,34 @@ Built as a Progressive Web App (PWA), it runs entirely on-device, ensuring user 
 -   **Offline-First & Installable:** Fully functional without an internet connection for case preparation. It can be installed on any device as a PWA.
 -   **Production Ready:** Configured for robust deployment on Firebase Hosting and for building into a native Android application with Capacitor.
 
+## Download Android APK
+
+Get the Verum Omnis Android app for your device:
+
+### Option 1: Download Pre-built APK (Recommended)
+Download the latest pre-built APK directly from this repository:
+-   **[Download verum-omnis-engine.apk](verum-omnis-engine.apk)** (Click "Download" or "View raw")
+
+### Option 2: GitHub Releases
+Download the latest release APK with version information:
+-   Go to [Releases](../../releases) and download the APK from the latest release
+
+### Option 3: Build Artifacts
+Download APKs from recent builds:
+1. Go to [Actions](../../actions/workflows/production.yml)
+2. Click on the most recent successful workflow run
+3. Scroll down to "Artifacts" section
+4. Download the `verum-omnis-release` artifact
+
+### Installation Instructions
+1. Download the APK file using one of the methods above
+2. On your Android device, go to **Settings** > **Security** and enable **"Install from Unknown Sources"** or **"Install Unknown Apps"** for your browser/file manager
+3. Open the downloaded APK file
+4. Tap **Install** and follow the prompts
+5. Once installed, you can find "Verum Omnis" in your app drawer
+
+**Note:** The APK is unsigned for development purposes. Your device may show a security warning - this is normal for apps not distributed through the Play Store.
+
 ## Tech Stack
 
 -   **Frontend:** React, TypeScript, Vite
