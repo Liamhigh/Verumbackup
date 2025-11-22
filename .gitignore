@@ -16,12 +16,15 @@ dist-ssr
 .env
 .env.production
 
-# APK files
+# APK files (except release artifacts)
 *.apk
+!verum-omnis-engine.apk
+!android/app-debug.apk
 
-# Backup files
+# Backup files (except the original backup)
 *.tar.gz
 *.zip
+!verum-omnis-backup-20251119-055319.tar.gz
 
 # Editor directories and files
 .vscode/*
