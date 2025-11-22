@@ -286,8 +286,8 @@ const calculateSHA256 = async (file: File): Promise<string> => {
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 };
 
-// Generate cryptographic seal
-const generateCryptographicSeal = (timestamp: string, geolocation: any, fileHashes: string[]): string => {
+// Generate cryptographic seal using SHA-256
+const generateCryptographicSeal = async (timestamp: string, geolocation: any, fileHashes: string[]): Promise<string> => {
     const sealData = JSON.stringify({
         timestamp,
         geolocation,
@@ -295,14 +295,13 @@ const generateCryptographicSeal = (timestamp: string, geolocation: any, fileHash
         version: 'V5.0',
         architecture: '9-Brain'
     });
-    // Simple hash for seal (in production, use more sophisticated signing)
-    let hash = 0;
-    for (let i = 0; i < sealData.length; i++) {
-        const char = sealData.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-    }
-    return Math.abs(hash).toString(16).toUpperCase().padStart(16, '0');
+    
+    // Use Web Crypto API for cryptographically secure hash
+    const encoder = new TextEncoder();
+    const data = encoder.encode(sealData);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase().substring(0, 16);
 };
 
 // --- Offline Forensic Analysis with 9 Brain Architecture ---
@@ -313,7 +312,7 @@ const runOfflineForensics = async (
 ): Promise<string> => {
     const timestamp = new Date().toISOString();
     const hashArray = Array.from(fileHashes.values());
-    const cryptoSeal = generateCryptographicSeal(timestamp, geolocation, hashArray);
+    const cryptoSeal = await generateCryptographicSeal(timestamp, geolocation, hashArray);
     
     let report = `# VERUM OMNIS FORENSIC REPORT\n\n`;
     report += `**Report Generated:** ${new Date().toLocaleString()}\n`;
@@ -681,7 +680,7 @@ OUTPUT REQUIREMENTS:
 
     try {
         const completion = await openai.chat.completions.create({
-            model: "gpt-4-turbo-preview",
+            model: "gpt-4-turbo",
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: userPrompt }
