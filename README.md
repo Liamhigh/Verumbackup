@@ -39,6 +39,7 @@ Download APKs from recent builds:
 3. Open the downloaded APK file
 4. Tap **Install** and follow the prompts
 5. Once installed, you can find "Verum Omnis" in your app drawer
+6. **Important:** You'll need to provide your own Google Gemini API key when first launching the app
 
 **Note:** The APK is unsigned for development purposes. Your device may show a security warning - this is normal for apps not distributed through the Play Store.
 
@@ -88,7 +89,11 @@ Download APKs from recent builds:
     ```
 
 3.  **API Key Configuration:**
-    The application is designed to use an API key provided by its execution environment. In development environments like AI Studio, `process.env.API_KEY` is automatically injected.
+    Create a `.env` file in the project root and add your Google Gemini API key:
+    ```bash
+    cp .env.example .env
+    ```
+    Then edit `.env` and replace `your_google_gemini_api_key_here` with your actual API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 4.  **Run the Development Server:**
     ```bash
